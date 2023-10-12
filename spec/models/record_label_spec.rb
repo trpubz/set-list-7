@@ -1,7 +1,8 @@
 require "rails_helper"
 
 RSpec.describe RecordLabel do
-  it {should have_many :artists}
+  it { should have_many :artists }
+  it { should have_many(:songs).through(:artists) }
 
   describe "#songs" do
     it "can return all songs for all artists for the record label" do
@@ -13,6 +14,7 @@ RSpec.describe RecordLabel do
       antihero = taylor.songs.create!(title: "Antihero", length: 500, play_count: 48939)
 
       expect(label.songs).to eq([purple, beret, antihero])
+      expect(label.artist_songs(taylor.id)).to eq [antihero]
     end
   end
 end
