@@ -1,0 +1,9 @@
+<h1>All Songs</h1>
+
+<% @songs.each do |song| %>
+  <section id="song-<%= song.id%>">
+    <a href="/songs/<%= song.id %>"><%= song.title %></a>
+    <p>Play Count: <%= song.play_count %></p>
+  </section>
+<% end %>
+
